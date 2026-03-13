@@ -31,6 +31,9 @@ ${data.username}`;
       { name: "**Server Region**", value: `${data.serverRegion}`, inline: true },
       { name: "**Server Created**", value: `<t:${data.serverCreated}:F>`, inline: true },
 
+      // Spacer to start a new row
+      { name: "\u200b", value: "\u200b", inline: false },
+
       // Non-inline fields below all inline stuff
       { name: "**Server ID**", value: `${data.serverId}`, inline: false },
       { name: "**In-Game Player Location**", value: `${data.location}`, inline: false }
