@@ -49,7 +49,7 @@ ${data.username}`;
           {
             title: "QA Log",
             description: description,
-            color: 0x22194D, // black / no color
+            color: 0x2f3136, // black / no color
             fields: fields
           }
         ]
