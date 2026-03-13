@@ -14,28 +14,36 @@ app.post("/qalog", async (req, res) => {
     const description = `**Submitted by**
 ${data.username}`;
 
-    // Inline fields properly using Discord's inline feature
+    // Fields with inline rows and proper spacing
     const fields = [
-      // Row 1
+      // Spacer between "Submitted by" and inline rows
+      { name: "\u200b", value: "\u200b", inline: false },
+
+      // Inline Row 1
       { name: "**Avg. FPS**", value: `${data.fps}`, inline: true },
       { name: "**Place ID**", value: `${data.placeId}`, inline: true },
       { name: "**Players in Server**", value: `${data.playersInServer}`, inline: true },
 
-      // Row 2
+      // Inline Row 2
       { name: "**Player Cash**", value: `${data.cash}`, inline: true },
       { name: "**Player Device**", value: `${data.device}`, inline: true },
       { name: "**Player XP**", value: `Level ${data.level}`, inline: true },
 
-      // Row 3
+      // Inline Row 3
       { name: "**Server Version**", value: `${data.serverVersion}`, inline: true },
       { name: "**Server Region**", value: `${data.serverRegion}`, inline: true },
       { name: "**Server Created**", value: `<t:${data.serverCreated}:F>`, inline: true },
 
-      // Spacer to start a new row
+      // Spacer between inline rows and Server ID
       { name: "\u200b", value: "\u200b", inline: false },
 
-      // Non-inline fields below all inline stuff
+      // Server ID
       { name: "**Server ID**", value: `${data.serverId}`, inline: false },
+
+      // Spacer between Server ID and Player Location
+      { name: "\u200b", value: "\u200b", inline: false },
+
+      // In-Game Player Location
       { name: "**In-Game Player Location**", value: `${data.location}`, inline: false }
     ];
 
@@ -48,7 +56,7 @@ ${data.username}`;
           {
             title: "QA Log",
             description: description,
-            color: 0x000000, // black / no color
+            color: 0x22194D, // black / no color
             fields: fields
           }
         ]
