@@ -10,15 +10,9 @@ app.post("/qalog", async (req, res) => {
   try {
     const data = req.body;
 
-    // Description for non-inline fields
+    // Description with only Submitted by
     const description = `**Submitted by**
-${data.username}
-
-**Server ID**
-${data.serverId}
-
-**In-Game Player Location**
-${data.location}`;
+${data.username}`;
 
     // Inline fields properly using Discord's inline feature
     const fields = [
@@ -35,7 +29,11 @@ ${data.location}`;
       // Row 3
       { name: "**Server Version**", value: `${data.serverVersion}`, inline: true },
       { name: "**Server Region**", value: `${data.serverRegion}`, inline: true },
-      { name: "**Server Created**", value: `<t:${data.serverCreated}:F>`, inline: true }
+      { name: "**Server Created**", value: `<t:${data.serverCreated}:F>`, inline: true },
+
+      // Non-inline fields below all inline stuff
+      { name: "**Server ID**", value: `${data.serverId}`, inline: false },
+      { name: "**In-Game Player Location**", value: `${data.location}`, inline: false }
     ];
 
     // Build form
@@ -47,7 +45,7 @@ ${data.location}`;
           {
             title: "QA Log",
             description: description,
-            color: 0x000000, // black
+            color: 0x000000, // black / no color
             fields: fields
           }
         ]
