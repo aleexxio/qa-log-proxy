@@ -10,18 +10,9 @@ app.post("/qalog", async (req, res) => {
   try {
     const data = req.body;
 
-    // Hybrid embed format: inline vs single lines
-    const embedDescription = `**Submitted by**
+    // Description for non-inline fields
+    const description = `**Submitted by**
 ${data.username}
-
-**Avg. FPS**    **Place ID**     **Players in Server**
-${data.fps}        ${data.placeId}        ${data.playersInServer}
-
-**Player Cash**   **Player Device**                                  **Player XP**
-${data.cash}           ${data.device}   Level ${data.level}
-
-**Server Version**    **Server Region**    **Server Created**
-${data.serverVersion}            ${data.serverRegion}             <t:${data.serverCreated}:F>
 
 **Server ID**
 ${data.serverId}
@@ -29,6 +20,7 @@ ${data.serverId}
 **In-Game Player Location**
 ${data.location}`;
 
+    // Build form for Discord webhook
     const form = new FormData();
     form.append(
       "payload_json",
@@ -36,8 +28,28 @@ ${data.location}`;
         embeds: [
           {
             title: "QA Log",
-            description: embedDescription,
-            color: 0x000000 // black
+            description: description,
+            color: 0x000000, // black
+            fields: [
+              // Inline field group 1
+              {
+                name: "**Avg. FPS**    **Place ID**     **Players in Server**",
+                value: `${data.fps}        ${data.placeId}        ${data.playersInServer}`,
+                inline: true
+              },
+              // Inline field group 2
+              {
+                name: "**Player Cash**   **Player Device**                                  **Player XP**",
+                value: `${data.cash}           ${data.device}   Level ${data.level}`,
+                inline: true
+              },
+              // Inline field group 3
+              {
+                name: "**Server Version**    **Server Region**    **Server Created**",
+                value: `${data.serverVersion}            ${data.serverRegion}             <t:${data.serverCreated}:F>`,
+                inline: true
+              }
+            ]
           }
         ]
       })
