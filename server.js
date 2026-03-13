@@ -17,7 +17,6 @@ ${data.username}`;
     // Fields with inline rows and proper spacing
     const fields = [
       // Spacer between "Submitted by" and inline rows
-      { name: "\u200b", value: "\u200b", inline: false },
 
       // Inline Row 1
       { name: "**Avg. FPS**", value: `${data.fps}`, inline: true },
@@ -34,14 +33,8 @@ ${data.username}`;
       { name: "**Server Region**", value: `${data.serverRegion}`, inline: true },
       { name: "**Server Created**", value: `<t:${data.serverCreated}:F>`, inline: true },
 
-      // Spacer between inline rows and Server ID
-      { name: "\u200b", value: "\u200b", inline: false },
-
       // Server ID
       { name: "**Server ID**", value: `${data.serverId}`, inline: false },
-
-      // Spacer between Server ID and Player Location
-      { name: "\u200b", value: "\u200b", inline: false },
 
       // In-Game Player Location
       { name: "**In-Game Player Location**", value: `${data.location}`, inline: false }
