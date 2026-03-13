@@ -20,7 +20,25 @@ ${data.serverId}
 **In-Game Player Location**
 ${data.location}`;
 
-    // Build form for Discord webhook
+    // Inline fields properly using Discord's inline feature
+    const fields = [
+      // Row 1
+      { name: "**Avg. FPS**", value: `${data.fps}`, inline: true },
+      { name: "**Place ID**", value: `${data.placeId}`, inline: true },
+      { name: "**Players in Server**", value: `${data.playersInServer}`, inline: true },
+
+      // Row 2
+      { name: "**Player Cash**", value: `${data.cash}`, inline: true },
+      { name: "**Player Device**", value: `${data.device}`, inline: true },
+      { name: "**Player XP**", value: `Level ${data.level}`, inline: true },
+
+      // Row 3
+      { name: "**Server Version**", value: `${data.serverVersion}`, inline: true },
+      { name: "**Server Region**", value: `${data.serverRegion}`, inline: true },
+      { name: "**Server Created**", value: `<t:${data.serverCreated}:F>`, inline: true }
+    ];
+
+    // Build form
     const form = new FormData();
     form.append(
       "payload_json",
@@ -30,26 +48,7 @@ ${data.location}`;
             title: "QA Log",
             description: description,
             color: 0x000000, // black
-            fields: [
-              // Inline field group 1
-              {
-                name: "**Avg. FPS**    **Place ID**     **Players in Server**",
-                value: `${data.fps}        ${data.placeId}        ${data.playersInServer}`,
-                inline: true
-              },
-              // Inline field group 2
-              {
-                name: "**Player Cash**   **Player Device**                                  **Player XP**",
-                value: `${data.cash}           ${data.device}   Level ${data.level}`,
-                inline: true
-              },
-              // Inline field group 3
-              {
-                name: "**Server Version**    **Server Region**    **Server Created**",
-                value: `${data.serverVersion}            ${data.serverRegion}             <t:${data.serverCreated}:F>`,
-                inline: true
-              }
-            ]
+            fields: fields
           }
         ]
       })
