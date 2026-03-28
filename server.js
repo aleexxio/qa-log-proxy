@@ -4,7 +4,7 @@ const FormData = require("form-data");
 const app = express();
 app.use(express.json({ limit: "1mb" }));
 
-const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1481991808753074176/Ue5xzRFBmnqJLwLRqzVtRWFDp2M69yABiI6KqyN8DHdAhI7Zj7Nk3ehgjusqtPPw1w-t";
+const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1431349627080147130/1d4qd8yT3l2C71jjM24vLsMp2clMqLFdhuaZ8Su7bV73bBuQePn7ENYxw2TZYk_AJq9U";
 
 app.post("/qalog", async (req, res) => {
   try {
